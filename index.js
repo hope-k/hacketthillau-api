@@ -1,18 +1,18 @@
 require('dotenv').config();
-const connectDB = require('../config/connectDb')
+const connectDB = require('./config/connectDb')
 const express = require('express');
 const app = express();
 const colors = require('colors');
 const session = require('express-session')
-const connection = require('../config/connectDb');
+const connection = require('./config/connectDb');
 const MongoStore = require('connect-mongo');
-const authRoute = require('../routes/authRoute');
-const auth = require('../middlewares/auth');
-const onError = require('../middlewares/onError');
-const transactionRoute = require('../routes/transactionRoute');
-const accountRoute = require('../routes/accountRoute')
-const statRoute = require('../routes/statRoute')
-const messageRoute = require('../routes/messageRoute')
+const authRoute = require('./routes/authRoute');
+const auth = require('./middlewares/auth');
+const onError = require('./middlewares/onError');
+const transactionRoute = require('./routes/transactionRoute');
+const accountRoute = require('./routes/accountRoute')
+const statRoute = require('./routes/statRoute')
+const messageRoute = require('./routes/messageRoute')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 app.set('trust proxy', 1)
