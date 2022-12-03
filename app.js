@@ -19,7 +19,15 @@ app.set('trust proxy', 1)
 app.use(cookieParser())
 //... other middlewares
 
-app.options('*', cors())
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://familytrustbank.netlify.app', 'https://familytrustbank-backend.herokuapp.com', 'https://hacketthillau.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // enable set cookie
+    
+
+
+}));
+
 
 
 
