@@ -59,3 +59,4 @@ app.use(onError)
 app.listen(process.env.PORT || 5000, () => {
     console.log('---Server Started---'.bgGreen.black.italic.bold)
 })
+module.exports = app
