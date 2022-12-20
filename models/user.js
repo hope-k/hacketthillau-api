@@ -66,11 +66,7 @@ const userSchema = new mongoose.Schema({
         },
         default: 'inactive'
     },
-    image1: {
-        type: String,
-        default: '/no-photo.jpg'
-    },
-    image2: {
+    image: {
         type: String,
         default: '/no-photo.jpg'
     },

@@ -93,10 +93,6 @@ exports.logout = asyncErrorHandler(async (req, res, next) => {
 
 exports.updateUser = asyncErrorHandler(async (req, res, next) => {
     const { id, field, value } = req.body
-    const currentAdminClientId = await req.user.clientId
-    if (id !== currentAdminClientId) {
-        return next(new errorHandler('You are not authorized to edit this user'))
-    }
     const user = await User.findById(id);
     if (!user) {
         return next(new errorHandler('This ID not not match any of our records'))
@@ -108,6 +104,7 @@ exports.updateUser = asyncErrorHandler(async (req, res, next) => {
     })
 
 })
+
 exports.deleteUser = asyncErrorHandler(async (req, res, next) => {
     const user = await User.findById(req.query.id);
     if (!user) {

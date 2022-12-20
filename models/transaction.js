@@ -31,7 +31,7 @@ const transactionSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
-    },
+    }, 
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
