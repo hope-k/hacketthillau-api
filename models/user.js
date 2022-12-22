@@ -67,8 +67,14 @@ const userSchema = new mongoose.Schema({
         default: 'inactive'
     },
     image: {
-        type: String,
-        default: '/no-photo.jpg'
+        url: {
+            type: String,
+            default: 'https://res.cloudinary.com/dxqjyqz8p/image/upload/v1600000000/placeholder.png'
+        },
+        public_id: {
+            type: String,            
+        }
+
     },
     pin: {
         type: String,

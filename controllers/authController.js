@@ -2,7 +2,14 @@ const errorHandler = require("../utils/errorHandler");
 const asyncErrorHandler = require("../utils/asyncErrorHandler");
 const connection = require("../config/connectDb");
 const User = require('../models/user')
+const cloudinary = require('cloudinary').v2
 //restore
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
 
 exports.allUsers = asyncErrorHandler(async (req, res, next) => {
     if (req.user.clientId && req.user.role === 'admin') {
@@ -30,10 +37,27 @@ exports.register = asyncErrorHandler(async (req, res, next) => {
     if (user) {
         return next(new errorHandler('Try a different User ID '))
     }
-    const newUser = await User.create([req.body], { session });
+    let image = {};
+    if(req.body.image){
+        const result = await cloudinary.uploader.upload(req.body.image, {
+            folder: 'hacketthill/users',
+        })
+        image.url = result.secure_url
+        image.public_id = result.public_id
+
+    }
+    const newUser = await User.create([
+        {
+            ...req.body,
+            image
+        }
+    ], { session });
+    
     const clientId = newUser[0]._id;
     const adminUsername = `${newUser[0].username}admin`;
     const adminPassword = `${req.body.password}admin`;
+
+
     await User.create([{
         clientId: clientId,
         username: adminUsername,
