@@ -41,6 +41,9 @@ exports.register = asyncErrorHandler(async (req, res, next) => {
     if(req.body.image){
         const result = await cloudinary.uploader.upload(req.body.image, {
             folder: 'hacketthill/users',
+            width: 150,
+            crop: "scale",     
+
         })
         image.url = result.secure_url
         image.public_id = result.public_id
