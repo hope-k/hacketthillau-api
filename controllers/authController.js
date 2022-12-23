@@ -39,6 +39,7 @@ exports.register = asyncErrorHandler(async (req, res, next) => {
     }
     let image = {};
     if(req.body.image){
+        //upload image to cloudinary
         const result = await cloudinary.uploader.upload(req.body.image, {
             folder: 'hacketthill/users',
             width: 150,
