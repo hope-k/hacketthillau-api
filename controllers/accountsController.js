@@ -61,9 +61,20 @@ exports.deleteAccount = asyncErrorHandler(async (req, res, next) => {
 })
 
 exports.allAccounts = asyncErrorHandler(async (req, res, next) => {
+    if (req.user?.clientId && req.user.role === 'admin') {
+        const accounts = await Account.find({ user: req.user.clientId }).populate('user')
+        if (!accounts) {
+            return next(new errorHandler('No Accounts!'))
+        }
+        return res.status(200).json({
+            accounts,
+            success: true
+        })
+    }
+
     const accounts = await Account.find().populate('user')
     if (!accounts) {
-        return next(new errorHandler('This ID not not match any of our records'))
+        return next(new errorHandler('No accounts!'))
     }
 
     res.status(200).json({

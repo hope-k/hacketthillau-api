@@ -9,7 +9,7 @@ router.get('/transactions',auth, transactionsController.myTransactions);
 router.post('/add-transaction',auth, transactionsController.addTransaction);
 router.put('/update-transaction',auth, authorizeAdmin, transactionsController.updateTransaction);
 router.delete('/delete-transaction',auth, authorizeAdmin, transactionsController.deleteTransaction);
-router.get('/all-transactions', transactionsController.allTransactions);
+router.get('/all-transactions', auth, authorizeAdmin, transactionsController.allTransactions);
 router.post('/admin-deposit',auth, authorizeAdmin, transactionsController.adminDeposit);
 
 

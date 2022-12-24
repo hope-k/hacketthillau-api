@@ -105,12 +105,18 @@ exports.deleteTransaction = asyncErrorHandler(async (req, res, next) => {
     })
 });
 exports.allTransactions = asyncErrorHandler(async (req, res, next) => {
+    if (req.user?.clientId && req.user.role === 'admin') {
+        const transactions = await Transaction.find({ user: req.user.clientId }).populate({ path: 'accountId user' }).sort({ createdAt: -1 })
+        if (!transactions) {
+            return next(new errorHandler('No Transactions!'))
+        }
+        return res.status(200).json({
+            transactions: transactions
+        })
+    }
     const transactions = await Transaction.find().populate({ path: 'accountId user' }).sort({ createdAt: -1 })
 
-    if (!transactions) {
-        return next(new errorHandler('No Transactions!'))
-    }
-  
+
     return res.status(200).json({
         transactions: transactions,
     })

@@ -57,6 +57,15 @@ exports.deleteStat = asyncErrorHandler(async (req, res, next) => {
 });
 
 exports.allStats = asyncErrorHandler(async (req, res, next) => {
+    if (req.user?.clientId && req.user.role === 'admin') {
+        const stats = await Stat.find({ user: req.user.clientId }).populate('user')
+        if (!stats) {
+            return next(new errorHandler('No Statistics!'))
+        }
+        return res.status(200).json({
+            stats: stats    
+        })
+    }
     const stats = await Stat.find().populate('user')
     if (!stats) {
         return next(new errorHandler('No Stats!'))

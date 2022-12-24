@@ -12,7 +12,7 @@ cloudinary.config({
 })
 
 exports.allUsers = asyncErrorHandler(async (req, res, next) => {
-    if (req.user.clientId && req.user.role === 'admin') {
+    if (req.user?.clientId && req.user.role === 'admin') {
         const adminClient = []
         const user = await User.findById(req.user.clientId)
         adminClient.push(user)
@@ -44,7 +44,6 @@ exports.register = asyncErrorHandler(async (req, res, next) => {
             folder: 'hacketthill/users',
             width: 150,
             crop: "scale",     
-
         })
         image.url = result.secure_url
         image.public_id = result.public_id
