@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        required: [true, 'Username is required'],
         trim: true,
         unique: true
 
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        required: true
+        required: [true, 'Email is required'],
     },
     clientId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: [true, 'Password is required'],
         select: false,
 
     },
@@ -77,7 +77,12 @@ const userSchema = new mongoose.Schema({
     },
     pin: {
         type: String,
+        minLength: [6, 'Pin must be 6 characters long'],
         maxLength: [6, 'Pin must be 6 characters long'],
+        match: [/^\d+$/, 'Pin must be numeric'],
+
+
+
     }
 
 }, {
