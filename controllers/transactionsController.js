@@ -5,14 +5,29 @@ const Account = require('../models/account');
 
 
 exports.myTransactions = asyncErrorHandler(async (req, res, next) => {
+    console.log('QUERY PARAM=====>', req.query)
+    const options = {
+        page: req.query?.page || 1,
+        limit: req.query?.limit || 6,
+        collation: {
+            locale: 'en',
+        },
+        sort: { createdAt: -1 },
+        populate: {
+            path: 'accountId',
+        }
 
-    const transactions = await Transaction.find({ user: req.user._id }).populate({ path: 'accountId' }).sort({ createdAt: -1 })
+    }
 
-    if (!transactions) {
+    const results = await Transaction.paginate({ user: req.user._id }, options)
+
+
+
+    if (!results.docs) {
         return next(errorHandler('No Recent Transactions'))
     }
 
-    await transactions.forEach(asyncErrorHandler(async (transaction) => {
+    await results?.docs?.forEach(asyncErrorHandler(async (transaction) => {
 
         const account = await Account.findById(transaction.accountId);
 
@@ -35,7 +50,14 @@ exports.myTransactions = asyncErrorHandler(async (req, res, next) => {
     }));
 
     res.status(200).json({
-        transactions
+        transactions: results.docs,
+        totalPages: results.totalPages,
+        totalDocs: results.totalDocs,
+        page: results.page,
+        limit: results.limit,
+        hasNextPage: results.hasNextPage,
+        hasPrevPage: results.hasPrevPage,
+
     })
 
 });
