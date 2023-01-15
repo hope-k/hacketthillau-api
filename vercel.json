@@ -13,7 +13,7 @@
             },
             {
                 "key": "Access-Control-Allow-Origin",
-                "value": "*"
+                "value": "https://www.nachtnebeltrust.com"
             },
             {
                 "key": "Access-Control-Allow-Methods",
