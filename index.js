@@ -25,9 +25,9 @@ app.use(cors({
         'https://hacketthillau.com',
         'https://nachtnebeltrust.com',
         'https://www.nachtnebeltrust.com',
-        'https://familytrustbank.netlify.app',
         'https://hacketthillau-api.vercel.app',
-        'https://nachtnebeltrust.vercel.app'
+        'https://nachtnebeltrust.vercel.app',
+        'www.nachtnebeltrust.com'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // enable set cookie
