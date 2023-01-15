@@ -5,7 +5,6 @@ const Account = require('../models/account');
 
 
 exports.myTransactions = asyncErrorHandler(async (req, res, next) => {
-    console.log('QUERY PARAM=====>', req.query)
     const options = {
         page: req.query?.page || 1,
         limit: req.query?.limit || 6,
