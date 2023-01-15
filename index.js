@@ -20,7 +20,11 @@ app.use(cookieParser())
 //... other middlewares
 
 app.use(cors({
-    origin: 'https://www.nachtnebeltrust.com',
+    origin: [
+        'https://www.nachtnebeltrust.com/',
+        'https://nachtnebeltrust-hcb8qa3t7-hope-k.vercel.app/'
+    ],
+        
     credentials: true, // enable set cookie
 }));
 
