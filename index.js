@@ -19,11 +19,12 @@ app.set('trust proxy', 1)
 app.use(cookieParser())
 //... other middlewares
 
-app.use(cors({
-    origin: ['http://localhost:3000', 'https://hacketthillau.com', 'https://familytrustbank.netlify.app', 'https://hacketthillau-api.vercel.app'  ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // enable set cookie
-}));
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    next()
+})
 
 
 
