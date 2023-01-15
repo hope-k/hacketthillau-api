@@ -20,7 +20,7 @@ app.use(cookieParser())
 //... other middlewares
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://hacketthillau.com', 'https://nachtnebeltrust.com', 'https://familytrustbank.netlify.app', 'https://hacketthillau-api.vercel.app'  ],
+    origin: ['http://localhost:3000', 'https://hacketthillau.com', 'https://nachtnebeltrust.com', 'https://www.nachtnebeltrust.com', 'https://familytrustbank.netlify.app', 'https://hacketthillau-api.vercel.app'  ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // enable set cookie
 }));
