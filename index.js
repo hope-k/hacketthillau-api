@@ -20,15 +20,7 @@ app.use(cookieParser())
 //... other middlewares
 
 app.use(cors({
-    origin: [
-        'nachtnebeltrust.com',
-        'https://hacketthillau.com',
-        'https://nachtnebeltrust.com',
-        'https://www.nachtnebeltrust.com',
-        'https://hacketthillau-api.vercel.app',
-        'https://nachtnebeltrust.vercel.app',
-        'www.nachtnebeltrust.com'
-    ],
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // enable set cookie
 }));
