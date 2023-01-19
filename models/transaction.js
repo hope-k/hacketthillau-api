@@ -19,6 +19,9 @@ const transactionSchema = new mongoose.Schema({
     memo: {
       type: String,
     },
+    from: {
+       type: String
+    },
     status: {
         type: String,
         required: true,
@@ -35,12 +38,14 @@ const transactionSchema = new mongoose.Schema({
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        trim: true
     },
     accountId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Account',
-        required: true
+        required: true,
+        trim: true
     },
     createdAt: {
         type: Date,

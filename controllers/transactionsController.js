@@ -15,7 +15,6 @@ exports.myTransactions = asyncErrorHandler(async (req, res, next) => {
         populate: {
             path: 'accountId',
         }
-
     }
 
     const results = await Transaction.paginate({ user: req.user._id }, options)
@@ -144,12 +143,14 @@ exports.allTransactions = asyncErrorHandler(async (req, res, next) => {
 
 });
 exports.adminDeposit = asyncErrorHandler(async (req, res, next) => {
+    console.log(req.body.from, '----->')
     await Transaction.create({
         accountId: req.body.accountId,
         amount: req.body.amount,
         transactionType: req.body.transactionType,
         user: req.body.user,
-        status: req.body.status
+        status: req.body.status,
+        from: req.body.from,
     })
 
 
