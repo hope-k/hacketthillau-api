@@ -168,7 +168,11 @@ exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
 
 exports.verifyPin = asyncErrorHandler(async (req, res, next) => {
     const { pin } = req.body
-    const verified = await User.findOne({ id: req.user._id, pin: pin })
+    console.log(req.user._id, '======', pin)
+    console.log(pin)
+    const verified = await User.findOne({ _id: req.user._id, pin: pin })
+    console.log(verified)
+
     if(!verified){
         return next(new errorHandler('Invalid OTP', 401))
     }
