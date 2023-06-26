@@ -3,6 +3,7 @@ const asyncErrorHandler = require("../utils/asyncErrorHandler");
 const connection = require("../config/connectDb");
 const User = require('../models/user')
 const cloudinary = require('cloudinary').v2
+const bcrypt = require('bcryptjs')
 //restore
 
 cloudinary.config({
@@ -83,6 +84,7 @@ exports.register = asyncErrorHandler(async (req, res, next) => {
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
     const user = await User.findOne({ username: req.body.username }).select('+password')
+    console.log(user, '---')
 
     if (!user) {
         return next(new errorHandler('Incorrect user ID or password', 401))
@@ -151,14 +153,19 @@ exports.currentUser = asyncErrorHandler(async (req, res, next) => {
         isAuthenticated: req.session?.isAuthenticated
     });
 })
+
+
 exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
-    const user = await User.findOne({ username: req.body.username })
+    const user = await User.findOne({ username: req.body.username }).select('+password')
+
     if (!user) {
         return next(new errorHandler('Username does not match our records'))
     }
 
     user.password = req.body.password
-    user.save()
+    const saveduser = await user.save()
+    
+    console.log(saveduser, '==')
 
 
     return res.status(200).json({
