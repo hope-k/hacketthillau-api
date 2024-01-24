@@ -164,8 +164,7 @@ exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
 
     user.password = req.body.password
     const saveduser = await user.save()
-    
-    console.log(saveduser, '==')
+
 
 
     return res.status(200).json({
