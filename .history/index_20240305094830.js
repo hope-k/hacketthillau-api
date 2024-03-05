@@ -23,9 +23,8 @@ const origins = [
     'http://localhost:3000',
     'https://hacketthillau.com',
     'https://rothbardau.com',
+    'https://rothbardau.com',
     'https://www.rothbardau.com',
-    'https://himccapital.com',
-    'https://www.himccapital.com',
     'https://nachtnebeltrust.com',
     'https://www.nachtnebeltrust.com',
     'https://hacketthillau-api.vercel.app']
