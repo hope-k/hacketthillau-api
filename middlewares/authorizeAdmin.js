@@ -3,6 +3,7 @@ const errorHandler = require("../utils/errorHandler")
 
 
 module.exports = asyncErrorHandler(async (req, res, next) => {
+    
     if (req?.user?.role === 'admin') {
         return next()
     }
