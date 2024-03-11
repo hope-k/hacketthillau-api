@@ -28,7 +28,7 @@ exports.messages = asyncErrorHandler(async (req, res, next) => {
 
 exports.addMessage = asyncErrorHandler(async (req, res, next) => {
     console.log('========>>', req.user.role)
-    if(req.body.user !== req.user.clientId && req.user.role !== 'super-admin'){
+    if((req.body.user !== req.user.clientId) || req.user.role !== 'super-admin'){
         return next(new errorHandler('You are not authorized to send message to this user'))
     }
 
