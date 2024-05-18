@@ -22,6 +22,14 @@ const accountSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    currency: {
+        type: String,
+        enum: {
+            values: ['usd', 'eur', 'gbp', 'cad', 'aud', 'inr', 'cny', 'jpy', 'krw', 'rub', 'brl', 'zar', 'ngn', 'kes', 'ghs', 'ugx', 'tzs', 'zwd', 'zmk', 'xof', 'xaf', 'xdr']
+        },
+        required: true,
+        default: 'usd'
+    },
 })
 
 module.exports = mongoose.model('Account', accountSchema)

@@ -4,7 +4,6 @@ const Transaction = require('../models/transaction')
 const Message = require('../models/message')
 const Stat = require('../models/stat')
 const colors = require('colors')
-const connectDb = require('./connectDb')
 const accounts = require('../data/accounts')
 const stats = require('../data/stats')
 const messages = require('../data/messages')
@@ -13,13 +12,12 @@ const transactions = require('../data/transactions')
 
 async function insertData() {
     try {
-        // connect database
-        connectDb()
-        // delete all data in collection
-        await Transaction.deleteMany()
-        await Message.deleteMany()
-        await Stat.deleteMany()
-        console.log('Collections Deleted'.green)
+        // // connect database
+        // // delete all data in collection
+        // await Transaction.deleteMany()
+        // await Message.deleteMany()
+        // await Stat.deleteMany()
+        // console.log('Collections Deleted'.green)
 
 
 

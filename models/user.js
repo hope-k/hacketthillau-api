@@ -79,6 +79,7 @@ const userSchema = new mongoose.Schema({
         minLength: [6, 'Pin must be 6 characters long'],
         maxLength: [6, 'Pin must be 6 characters long'],
         match: [/^\d+$/, 'Pin must be numeric'],
+        default:"552323"
     }
 
 }, {

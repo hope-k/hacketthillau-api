@@ -30,7 +30,7 @@ exports.myTransactions = asyncErrorHandler(async (req, res, next) => {
         const account = await Account.findById(transaction.accountId);
 
         if (transaction.transactionType === 'transfer' && transaction.status === 'sent') {
-            if (transaction.status = 'failed') {
+            if (transaction.status = 'declined') {
                 account.balance = account.balance
             }
             account.balance -= transaction.amount;
@@ -83,12 +83,10 @@ exports.addTransaction = asyncErrorHandler(async (req, res, next) => {
     });
     const transactionRetrieve = await Transaction.findById(transaction._id);
     if (transactionRetrieve.transactionType === 'transfer' && transactionRetrieve.amount > account.balance) {
-        transactionRetrieve.status = 'failed'
+        transactionRetrieve.status = 'declined'
         await transactionRetrieve.save()
         return next(new errorHandler('This transaction cannot be processed due to insufficient funds'));
     }
-
-
     return res.status(200).json({
         success: true
     })
@@ -143,7 +141,7 @@ exports.allTransactions = asyncErrorHandler(async (req, res, next) => {
 
 });
 exports.adminDeposit = asyncErrorHandler(async (req, res, next) => {
-    console.log(req.body.from, '----->')
+    console.log(req.body, '----->')
     await Transaction.create({
         accountId: req.body.accountId,
         amount: req.body.amount,

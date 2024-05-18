@@ -23,7 +23,8 @@ exports.addAccount = asyncErrorHandler(async (req, res, next) => {
         accountNumber: accountNumber,
         accountType: req.body.accountType,
         balance: req.body.balance,
-        user: req.body.user
+        user: req.body.user,
+        currency: req.body.currency
 
     });
 
