@@ -26,8 +26,8 @@ const transactionSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: {
-            values: ['pending', 'declined', 'sent', 'complete', 'on-hold', 'awaiting-approval', 'refunded', 'failed'],
-            message: 'Transaction status must be one of pending, declined, sent, complete, on-hold, awaiting-approval, refunded'
+            values: ['pending', 'declined', 'sent', 'complete', 'on-hold', 'awaiting-approval', 'refunded', 'failed', 'reversed'],
+            message: 'Transaction status must be one of pending, declined, sent, complete, on-hold, awaiting-approval, refunded, reversed'
         },
         default: 'pending'
     },
