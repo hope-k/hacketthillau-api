@@ -181,6 +181,18 @@ exports.verifyPin = asyncErrorHandler(async (req, res, next) => {
         return next(new errorHandler('Invalid OTP', 401))
     }
 
+    // function to generate a pin of 6 digits
+    const generatePin = () => {
+        return Math.floor(100000 + Math.random() * 900000);
+    }
+
+    const newPin = generatePin();
+    const user = await User.findById(req.user._id);
+    user.pin = newPin;
+    await user.save();
+
+
+
     return res.status(200).json({
         success: true
     })

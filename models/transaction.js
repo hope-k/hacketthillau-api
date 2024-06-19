@@ -1,63 +1,74 @@
-const mongoose = require('mongoose');
-const paginate = require('mongoose-paginate-v2');
+const mongoose = require("mongoose");
+const paginate = require("mongoose-paginate-v2");
 
-
-const transactionSchema = new mongoose.Schema({
+const transactionSchema = new mongoose.Schema(
+  {
     transactionType: {
-        type: String,
-        enum: {
-            values: ['transfer', 'deposit']
-        },
-        default: 'transfer'
+      type: String,
+      enum: {
+        values: ["transfer", "deposit"],
+      },
+      default: "transfer",
     },
     payeeAccountNumber: {
-        type: String,
+      type: String,
     },
     payeeRoutingNumber: {
-        type: String,
+      type: String,
     },
     memo: {
       type: String,
     },
     from: {
-       type: String
+      type: String,
     },
     status: {
-        type: String,
-        required: true,
-        enum: {
-            values: ['pending', 'declined', 'sent', 'complete', 'on-hold', 'awaiting-approval', 'refunded', 'failed', 'reversed'],
-            message: 'Transaction status must be one of pending, declined, sent, complete, on-hold, awaiting-approval, refunded, reversed'
-        },
-        default: 'pending'
+      type: String,
+      required: true,
+      enum: {
+        values: [
+          "pending",
+          "declined",
+          "sent",
+          "complete",
+          "on-hold",
+          "awaiting-approval",
+          "refunded",
+          "failed",
+          "reversed",
+        ],
+        message:
+          "Transaction status must be one of pending, declined, sent, complete, on-hold, awaiting-approval, refunded, reversed",
+      },
+      default: "pending",
     },
     amount: {
-        type: Number,
-        required: true
-    }, 
+      type: Number,
+      required: true,
+    },
     user: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'User',
-        required: true,
-        trim: true
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+      required: true,
+      trim: true,
     },
     accountId: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Account',
-        required: true,
-        trim: true
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Account",
+      required: true,
+      trim: true,
     },
     createdAt: {
-        type: Date,
-        default: Date.now
-    }
-},
+      type: Date,
+      default: Date.now,
+    },
+  },
 
-    {
-        timestamps: true
-    }
-)
+  {
+    timestamps: true,
+  }
+);
 
 transactionSchema.plugin(paginate);
 
-module.exports = mongoose.model('Transaction', transactionSchema)
+module.exports = mongoose.model("Transaction", transactionSchema);
