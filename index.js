@@ -28,7 +28,11 @@ const origins = [
     'https://www.himccapital.com',
     'https://nachtnebeltrust.com',
     'https://www.nachtnebeltrust.com',
-    'https://hacketthillau-api.vercel.app']
+    'https://hacketthillau-api.vercel.app',
+    'https://austectrust.com/',
+    'https://www.austectrust.com/'
+]
+
 
 app.use(cors({
     origin: origins,

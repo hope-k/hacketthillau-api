@@ -19,6 +19,7 @@ exports.myAccounts = asyncErrorHandler(async (req, res, next) => {
 
 exports.addAccount = asyncErrorHandler(async (req, res, next) => {
     const accountNumber = crypto.randomBytes(10).readInt32BE(0)
+    console.log(req.body, '====== ')
     await Account.create({
         accountNumber: accountNumber,
         accountType: req.body.accountType,
