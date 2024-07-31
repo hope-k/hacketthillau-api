@@ -26,10 +26,11 @@ const origins = [
     'https://www.rothbardau.com',
     'https://himccapital.com',
     'https://www.himccapital.com',
-    'https://austectrust.com/',
     'https://nachtnebeltrust.com',
     'https://www.nachtnebeltrust.com',
-    'https://hacketthillau-api.vercel.app'
+    'https://hacketthillau-api.vercel.app',
+    'https://austectrust.com',
+    'https://www.austectrust.com'
 ]
 
 
