@@ -19,6 +19,9 @@ const transactionSchema = new mongoose.Schema(
     memo: {
       type: String,
     },
+    bankName: {
+      type: String,
+    },
     from: {
       type: String,
     },

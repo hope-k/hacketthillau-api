@@ -79,6 +79,7 @@ exports.addTransaction = asyncErrorHandler(async (req, res, next) => {
         amount: req.body.amount,
         accountId: req.body.accountId,
         memo: req.body?.memo,
+        bankName: req.body?.bankName,
         user: req.body?.user || req.user._id
     });
     const transactionRetrieve = await Transaction.findById(transaction._id);
