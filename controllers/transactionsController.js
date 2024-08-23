@@ -142,7 +142,6 @@ exports.allTransactions = asyncErrorHandler(async (req, res, next) => {
 
 });
 exports.adminDeposit = asyncErrorHandler(async (req, res, next) => {
-    console.log(req.body, '----->')
     await Transaction.create({
         accountId: req.body.accountId,
         amount: req.body.amount,

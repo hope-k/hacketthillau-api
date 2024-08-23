@@ -103,7 +103,7 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
     return next(new errorHandler("Incorrect user ID or password"));
   }
   if (user.status === "inactive") {
-    return next(new errorHandler("Your account is still being processed"));
+    return next(new errorHandler("Your account is temporarily on hold. Please contact Customer Support for assistance."));
   }
   const token = await user.generateAuthToken();
   const finalUser = await User.findOne({ username: req.body.username });
