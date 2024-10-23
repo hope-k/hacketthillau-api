@@ -31,7 +31,7 @@ const origins = [
     'https://hacketthillau-api.vercel.app',
     'https://austectrust.com',
     'https://www.austectrust.com',
-    'https://beaufortt.com'
+    'https://beauforttcapital.com'
 ]
 
 
