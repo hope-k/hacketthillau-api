@@ -33,7 +33,8 @@ const origins = [
     'https://www.austectrust.com',
     'https://beauforttcapital.com',
     'https://stifel-capital.com',
-    'https://www.stifel-capital.com'
+    'https://www.stifel-capital.com',
+    "http://simmonsandhillcapital.com"
 ]
 
 
