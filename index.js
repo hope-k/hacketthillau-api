@@ -34,7 +34,9 @@ const origins = [
     'https://beauforttcapital.com',
     'https://stifel-capital.com',
     'https://www.stifel-capital.com',
-    "http://simmonsandhillcapital.com"
+    "https://simmonsandhillcapital.com",
+    "https:www.//simmonsandhillcapital.com"
+
 ]
 
 
